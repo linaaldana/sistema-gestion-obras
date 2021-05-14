@@ -1,0 +1,2 @@
+
+    exports.SECRET= 'sistema-api'
