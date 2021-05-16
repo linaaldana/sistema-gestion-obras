@@ -23,7 +23,7 @@ exports.createUsuario = async (req, res) => {
 }
 exports.getUsuarios = async (req, res) => {
     const usuarios = await Usuario.findAll();
-    res.json(usuarios);
+    res.status(200).json(usuarios);
 }
 exports.getUsuarioById = (req, res) => {
 
