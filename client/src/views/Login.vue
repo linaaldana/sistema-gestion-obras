@@ -13,9 +13,9 @@
                     width="180"
                     height="180"
                   />
-                  <h1 class="flex my-4 primary--text">
-                    Sistema de Gestión de Obras
-                  </h1>
+                  <h2 class="flex my-4 grey--text text--darken-3">
+                   SISTEMA DE GESTIÓN DE OBRAS
+                  </h2>
                 </div>
                 <v-form>
                   <v-text-field
@@ -43,10 +43,19 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn block color="primary" @click="login" :loading="loading">
-                  INICIAR SESIÓN</v-btn
-                >
+                <v-layout align-center justify-center>
+                  <v-flex lg4>
+                    <v-btn
+                      block
+                      color="teal"
+                      @click="login"
+                      :loading="loading"
+                      class='white--text'
+                    >
+                      INICIAR SESIÓN</v-btn
+                    >
+                  </v-flex>
+                </v-layout>
               </v-card-actions>
             </v-card>
           </v-flex>

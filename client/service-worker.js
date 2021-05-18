@@ -8,7 +8,7 @@ workbox.core.setCacheNameDetails({
 workbox.routing.registerRoute(
     ({ url }) => url.origin === 'http://localhost:3000' &&
         url.pathname.startsWith('/usuarios'),
-    new workbox.strategies.CacheFirst({
+    new workbox.strategies.NetworkFirst({
         cacheName: 'api',
         method: 'GET',
         cacheableResponse: { statuses: [0, 200] }
