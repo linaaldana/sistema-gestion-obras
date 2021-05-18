@@ -4,6 +4,7 @@ import Clientes from '../views/Clientes.vue';
 import Usuarios from '../views/Usuarios.vue';
 import Login from '../views/Login.vue';
 import crearUsuario from '../views/crearUsuario.vue';
+import editarUsuario from '../views/editarUsuario.vue';
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,16 @@ const routes = [
     meta: {
       breadcrumb: [
         { name: 'Usuario nuevo' },
+      ],
+    },
+  },
+  {
+    path: '/usuarios/editar/:id',
+    name: 'editarUsuario',
+    component: editarUsuario,
+    meta: {
+      breadcrumb: [
+        { name: 'Editar Usuario' },
       ],
     },
   },

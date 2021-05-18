@@ -4,7 +4,7 @@
     fixed app>
     <v-toolbar flat dark :color="$root.themeColor" class="toolbar">
       <router-link :to="{ name: 'Clientes' }">
-        <img src="/static/logo.png" width="36px">
+        <img :src="'/static/logo.png'" width="36px">
       </router-link>
       <router-link :to="{ name: 'Clientes' }" class="text">
          SGO

@@ -5,6 +5,8 @@ const authJwt = require('../middlewares');
 
 router.get('/', usuarioController.getUsuarios);
 
+router.get('/:id', usuarioController.getUsuarioById);
+
 router.post('/', usuarioController.createUsuario);
 
 router.put('/:id', usuarioController.updateUsuarioById);

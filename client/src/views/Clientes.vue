@@ -1,8 +1,7 @@
 <template>
   <v-container fluid>
-    <v-layout column style="height: 90vh">
+    <v-layout column style="height: 64vh">
       <v-flex md6 style="overflow: auto">
-        <data-table />
       </v-flex>
     </v-layout>
   </v-container>

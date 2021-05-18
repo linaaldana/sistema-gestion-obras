@@ -25,8 +25,10 @@ exports.getUsuarios = async (req, res) => {
     const usuarios = await Usuario.findAll();
     res.status(200).json(usuarios);
 }
-exports.getUsuarioById = (req, res) => {
-
+exports.getUsuarioById = async (req, res) => {
+    const usuario = await Usuario.findByPk(req.params.id);
+    if(!usuario) return res.status(400).json({title: 'not found', error: 'El usuario no existe.'})
+    res.status(200).json({usuario});
 }
 exports.updateUsuarioById = async (req, res) => {
     await Usuario.update(req.body, { where: { id: req.params.id } });

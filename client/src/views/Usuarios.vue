@@ -2,11 +2,11 @@
   <v-container fluid>
     <v-layout row>
       <v-spacer></v-spacer>
-      <v-btn round  color="teal" dark>
-         <router-link to="/usuarios/crear" class="nav-link">AgregarUsuario</router-link>
+      <v-btn fab dark color="teal" to="/usuarios/crear">
+        <v-icon dark>add</v-icon>
       </v-btn>
     </v-layout>
-    <v-layout column style="height: 90vh">
+    <v-layout column style="height: 80vh">
     <v-flex md6 style="overflow: auto">
     <data-table />
     </v-flex>

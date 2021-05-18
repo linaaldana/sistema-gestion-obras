@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import Vuetify from 'vuetify';
 import fullCalendar from 'vue-fullcalendar';
 import swatches from 'vue-swatches';
@@ -12,7 +13,6 @@ import './registerServiceWorker';
 import 'vuetify/dist/vuetify.min.css';
 import 'font-awesome/css/font-awesome.css';
 
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import './styles/global.css';
 
 import setupComponents from './components/config/setup-components';
@@ -32,7 +32,7 @@ new Vue({
   template: '<App/>',
   render: (h) => h(App),
   data: {
-    themeColor: '#1D2939',
+    themeColor: '#444444',
     userEmail: 'admin@yopmail.com',
     userPassword: '123456',
   },

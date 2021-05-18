@@ -15,13 +15,20 @@
       <td class="text-xs-left">{{ props.item.direccion }}</td>
       <td class="text-xs-left">{{ props.item.telefono }}</td>
       <td class="text-xs-left">{{ props.item.email }}</td>
-      <!-- <td class="text-xs-left">{{ props.item.password }}</td> -->
-      <!-- <td class="text-xs-left">{{ props.item.address.city }}</td> -->
+      <td class="justify-center">
+          <v-icon @click="updateItem(props.item)">
+            edit
+          </v-icon>
+          <v-icon @click="deleteItem(props.item)">
+            delete
+          </v-icon>
+        </td>
     </template>
   </v-data-table>
 </template>
 
 <script>
+import UsuarioDataService from '../services/UsuarioDataService';
 
 const avatars = [
   'https://avataaars.io/?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
@@ -41,43 +48,50 @@ export default {
           value: 'Avatar',
           align: 'left',
           sortable: false,
+          class: 'white--text',
         },
         {
           text: 'Nombre',
-          value: 'Name',
+          value: 'nombre',
           align: 'left',
           sortable: true,
+          class: 'white--text',
         },
         {
           text: 'Nombre Usuario',
-          value: 'Username',
+          value: 'username',
           align: 'left',
           sortable: true,
+          class: 'white--text',
         },
         {
           text: 'Dirección',
-          value: 'Email',
+          value: 'direccion',
           align: 'left',
           sortable: true,
+          class: 'white--text',
         },
         {
           text: 'Teléfono',
-          value: 'Phone',
+          value: 'telefono',
           align: 'left',
           sortable: true,
+          class: 'white--text',
         },
         {
           text: 'Email',
-          value: 'Company',
+          value: 'email',
           align: 'left',
           sortable: true,
+          class: 'white--text',
         },
-        // {
-        //   text: 'Password',
-        //   value: 'Password',
-        //   align: 'left',
-        //   sortable: true,
-        // },
+        {
+          text: 'Acciones',
+          value: 'actions',
+          align: 'left',
+          sortable: true,
+          class: 'white--text',
+        },
       ],
     };
   },
@@ -86,12 +100,21 @@ export default {
     randomAvatar() {
       return avatars[Math.floor(Math.random() * avatars.length)];
     },
+    deleteItem(item) {
+      console.log(item.id);
+      const index = this.users.indexOf(item);
+      this.users.splice(index, 1);
+      UsuarioDataService.deleteUsuario(item.id);
+    },
+    updateItem(item) {
+      this.$router.push({ name: 'editarUsuario', params: { id: item.id } });
+    },
   },
 
   created() {
     const vm = this;
 
-    vm.axios.get('http://localhost:3000/usuarios').then((response) => {
+    UsuarioDataService.getUsuarios().then((response) => {
       const result = response && response.data;
 
       vm.users = result;
@@ -106,6 +129,9 @@ export default {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.21);
-    background-color: transparent;
+    background-color: #444444;
+  }
+  thead{
+    background-color: #00ADAA;
   }
 </style>
