@@ -1,9 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Clientes from '../views/Clientes.vue';
+import crearCliente from '../views/crearCliente.vue';
+import editarCliente from '../views/editarCliente.vue';
 import Usuarios from '../views/Usuarios.vue';
+import Obras from '../views/Obras.vue';
 import Login from '../views/Login.vue';
 import crearUsuario from '../views/crearUsuario.vue';
+import crearObra from '../views/crearObra.vue';
+import verObra from '../views/verObra.vue';
 import editarUsuario from '../views/editarUsuario.vue';
 
 Vue.use(VueRouter);
@@ -16,6 +21,26 @@ const routes = [
     meta: {
       breadcrumb: [
         { name: 'Clientes' },
+      ],
+    },
+  },
+  {
+    path: '/clientes/crear',
+    name: 'crearCliente',
+    component: crearCliente,
+    meta: {
+      breadcrumb: [
+        { name: 'Cliente nuevo' },
+      ],
+    },
+  },
+  {
+    path: '/clientes/editar/:id',
+    name: 'editarCliente',
+    component: editarCliente,
+    meta: {
+      breadcrumb: [
+        { name: 'Actualizar Cliente' },
       ],
     },
   },
@@ -45,7 +70,37 @@ const routes = [
     component: editarUsuario,
     meta: {
       breadcrumb: [
-        { name: 'Editar Usuario' },
+        { name: 'Actualizar Usuario' },
+      ],
+    },
+  },
+  {
+    path: '/obras',
+    name: 'Obras',
+    component: Obras,
+    meta: {
+      breadcrumb: [
+        { name: 'Obras' },
+      ],
+    },
+  },
+  {
+    path: '/obras/crear',
+    name: 'crearObra',
+    component: crearObra,
+    meta: {
+      breadcrumb: [
+        { name: 'Obra nueva' },
+      ],
+    },
+  },
+  {
+    path: '/obras/ver/:id',
+    name: 'verObra',
+    component: verObra,
+    meta: {
+      breadcrumb: [
+        { name: 'ver Obra' },
       ],
     },
   },

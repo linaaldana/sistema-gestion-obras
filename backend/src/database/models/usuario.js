@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Usuario.belongsTo(models.Role)
+      Usuario.belongsTo(models.Role);
+      Usuario.hasOne(models.Cliente, { foreignKey: 'usuario' });
     }
 
     static encryptPassword = async (password) => {

@@ -35,6 +35,14 @@
           Técnicos / Constructores</v-list-tile-title>
       </v-list-tile>
 
+      <v-list-tile @click="changeRoute('Obras', 4)">
+        <v-list-tile-action>
+          <v-icon>group</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-title :class="[{'active': selectedIndex === 4}, 'item-title' ]">
+          Obras</v-list-tile-title>
+      </v-list-tile>
+
       <v-list-group
         prepend-icon="select_all">
         <v-list-tile slot="activator">

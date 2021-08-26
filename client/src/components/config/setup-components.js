@@ -6,7 +6,9 @@ import PageFooter from '../core/PageFooter.vue';
 
 import Widget from '../Widget.vue';
 import SocialWidget from '../SocialWidget.vue';
-import DataTable from '../DataTable.vue';
+import DataTableUsuarios from '../DataTableUsuarios.vue';
+import DataTableObras from '../DataTableObras.vue';
+import DataTableClientes from '../DataTableClientes.vue';
 import TimeLine from '../TimeLine.vue';
 import UserTreeView from '../UserTreeView.vue';
 import Stepper from '../Stepper.vue';
@@ -18,7 +20,9 @@ export default function setupComponents(Vue) {
   Vue.component('page-footer', PageFooter);
   Vue.component('widget', Widget);
   Vue.component('social-widget', SocialWidget);
-  Vue.component('data-table', DataTable);
+  Vue.component('data-table-usuarios', DataTableUsuarios);
+  Vue.component('data-table-obras', DataTableObras);
+  Vue.component('data-table-clientes', DataTableClientes);
   Vue.component('time-line', TimeLine);
   Vue.component('user-tree-view', UserTreeView);
   Vue.component('stepper', Stepper);

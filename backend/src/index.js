@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const { Pool, Client } = require('pg');
 const cors = require('cors');
 const usuarioRoutes = require('./routes/usuarios');
+const obraRoutes = require('./routes/obras');
+const clienteRoutes = require('./routes/clientes');
 const authRoutes = require('./routes/auth');
 const { createRoles } = require('./libs/initialSetup');
 
@@ -29,6 +31,8 @@ app.use(cors());
 
 //Routes
 app.use('/usuarios', usuarioRoutes);
+app.use('/obras', obraRoutes);
+app.use('/clientes', clienteRoutes);
 app.use('/auth', authRoutes);
 
 //Static files

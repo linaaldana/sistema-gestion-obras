@@ -2,7 +2,7 @@
   <v-data-table
     class="table"
     :headers="headers"
-    :items="users"
+    :items="clientes"
     :rows-per-page-items="[5, 10, 25]">
     <template slot="items" slot-scope="props">
       <td class="text-xs-left">
@@ -10,8 +10,9 @@
           <img :src="randomAvatar()" alt="avatar">
         </v-avatar>
       </td>
-      <td class="text-xs-left">{{ props.item.nombre }}</td>
-      <td class="text-xs-left">{{ props.item.username }}</td>
+      <td class="text-xs-left" @click.stop="verDetalleObra(props.item)">{{ props.item.nombre }}</td>
+      <td class="text-xs-left">{{ props.item.tipoIdentificacion }}</td>
+      <td class="text-xs-left">{{ props.item.numeroIdentificacion }}</td>
       <td class="text-xs-left">{{ props.item.direccion }}</td>
       <td class="text-xs-left">{{ props.item.telefono }}</td>
       <td class="text-xs-left">{{ props.item.email }}</td>
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-import UsuarioDataService from '../services/UsuarioDataService';
+import ClienteDataService from '../services/ClienteDataService';
 
 const avatars = [
   'https://avataaars.io/?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
@@ -42,7 +43,7 @@ const avatars = [
 export default {
   data() {
     return {
-      users: [],
+      clientes: [],
       headers: [
         {
           value: 'Avatar',
@@ -58,8 +59,15 @@ export default {
           class: 'white--text',
         },
         {
-          text: 'Nombre Usuario',
-          value: 'username',
+          text: 'Tipo de Identificación',
+          value: 'tipoIdentificacion',
+          align: 'left',
+          sortable: true,
+          class: 'white--text',
+        },
+        {
+          text: 'Número de Identificación',
+          value: 'numeroIdentificacion',
           align: 'left',
           sortable: true,
           class: 'white--text',
@@ -97,27 +105,30 @@ export default {
   },
 
   methods: {
+    verDetalleObra(item) {
+      this.$router.push({ name: 'verObra', params: { id: item.id } });
+    },
     randomAvatar() {
       return avatars[Math.floor(Math.random() * avatars.length)];
     },
     deleteItem(item) {
       console.log(item.id);
-      const index = this.users.indexOf(item);
-      this.users.splice(index, 1);
-      UsuarioDataService.deleteUsuario(item.id);
+      const index = this.clientes.indexOf(item);
+      this.clientes.splice(index, 1);
+      ClienteDataService.deleteCliente(item.id);
     },
     updateItem(item) {
-      this.$router.push({ name: 'editarUsuario', params: { id: item.id } });
+      this.$router.push({ name: 'editarCliente', params: { id: item.id } });
     },
   },
 
   created() {
     const vm = this;
 
-    UsuarioDataService.getUsuarios().then((response) => {
+    ClienteDataService.getClientes().then((response) => {
       const result = response && response.data;
-
-      vm.users = result;
+      vm.clientes = result;
+      console.log(vm.clientes);
     });
   },
 };
