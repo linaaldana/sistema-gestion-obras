@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import Clientes from '../views/Clientes.vue';
 import crearCliente from '../views/crearCliente.vue';
 import editarCliente from '../views/editarCliente.vue';
+import crearTrabajador from '../views/crearTrabajador.vue';
+import Trabajadores from '../views/Trabajadores.vue';
 import Usuarios from '../views/Usuarios.vue';
 import Obras from '../views/Obras.vue';
 import Login from '../views/Login.vue';
@@ -41,6 +43,26 @@ const routes = [
     meta: {
       breadcrumb: [
         { name: 'Actualizar Cliente' },
+      ],
+    },
+  },
+  {
+    path: '/trabajadores',
+    name: 'Trabajadores',
+    component: Trabajadores,
+    meta: {
+      breadcrumb: [
+        { name: 'Trabajadores' },
+      ],
+    },
+  },
+  {
+    path: '/trabajadores/crear',
+    name: 'crearTrabajador',
+    component: crearTrabajador,
+    meta: {
+      breadcrumb: [
+        { name: 'Trabajador nuevo' },
       ],
     },
   },

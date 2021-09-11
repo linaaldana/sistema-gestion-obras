@@ -5,6 +5,7 @@ const cors = require('cors');
 const usuarioRoutes = require('./routes/usuarios');
 const obraRoutes = require('./routes/obras');
 const clienteRoutes = require('./routes/clientes');
+const trabajdorRoutes = require('./routes/trabajadores');
 const authRoutes = require('./routes/auth');
 const { createRoles } = require('./libs/initialSetup');
 
@@ -33,6 +34,7 @@ app.use(cors());
 app.use('/usuarios', usuarioRoutes);
 app.use('/obras', obraRoutes);
 app.use('/clientes', clienteRoutes);
+app.use('/trabajadores', trabajdorRoutes);
 app.use('/auth', authRoutes);
 
 //Static files

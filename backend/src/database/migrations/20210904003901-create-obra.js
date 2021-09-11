@@ -30,11 +30,13 @@ module.exports = {
       jefeObra: {
         type: Sequelize.INTEGER
       },
-      tecnicos: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
-      },
       cliente: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Clientes",
+          key: "id",          
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

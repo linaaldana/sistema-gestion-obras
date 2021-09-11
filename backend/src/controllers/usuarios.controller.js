@@ -19,7 +19,7 @@ exports.createUsuario = async (req, res) => {
     });
     const usuarioGuardado = await newUser.save();
     console.log(usuarioGuardado);
-    res.status(200).json({ message: 'Usuario creado'});
+    res.status(200).json({usuarioGuardado});
 }
 exports.getUsuarios = async (req, res) => {
     const usuarios = await Usuario.findAll();
@@ -46,4 +46,13 @@ exports.deleteUsuarioById = async (req, res) => {
         status: 'Usuario eliminado'
     });
 }
+exports.getJefesObra = async (req, res) => {
+    const jefesObra = await Usuario.findAll({
+        where: {
+          role: 2
+        }
+      });
+    res.status(200).json(jefesObra);
+}
+
 

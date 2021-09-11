@@ -6,5 +6,8 @@ exports.createRoles = async () => {
 
     if (count > 0) return;
 
-    new Role({ nombre: 'admin' }).save();
+    new Role({ nombre: 'Administrador' }).save();
+    new Role({ nombre: 'Jefe de Obra' }).save();
+    new Role({ nombre: 'Subcontratista' }).save();
+    new Role({ nombre: 'Técnico/Trabajador' }).save();
 }

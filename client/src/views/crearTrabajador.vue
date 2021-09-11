@@ -40,7 +40,6 @@
                     <v-text-field
                       v-model="telefono"
                       label="Teléfono"
-                      type="number"
                       required
                     ></v-text-field>
                   </v-flex>
@@ -57,7 +56,14 @@
                     <v-text-field
                       v-model="email"
                       label="E-mail"
-                      :rules="emailRules"
+                      required
+                    ></v-text-field>
+                  </v-flex>
+
+                  <v-flex xs12 sm12>
+                    <v-text-field
+                      v-model="cargo"
+                      label="Cargo"
                       required
                     ></v-text-field>
                   </v-flex>
@@ -77,7 +83,7 @@
 </template>
 
 <script>
-import ClienteDataService from '../services/ClienteDataService';
+import TrabajadorDataService from '../services/TrabajadorDataService';
 import UsuarioDataService from '../services/UsuarioDataService';
 
 export default {
@@ -86,12 +92,12 @@ export default {
       showResult: false,
       result: '',
       nameRules: [
-        (v) => !!v || 'Por favor ingrese el nombre completo del cliente',
+        (v) => !!v || 'Por favor ingrese el nombre completo del trabajador',
       ],
 
       emailRules: [
-        (v) => !!v || 'el email es obligatorio',
-        (v) => /.+@.+/.test(v) || 'Por favor ingrese un email válido',
+        (v) => !!v || 'E-mail is required',
+        (v) => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
       nombre: '',
       tipoIdentificacion: '',
@@ -99,6 +105,7 @@ export default {
       direccion: '',
       telefono: '',
       email: '',
+      cargo: '',
       items: [
         'Cédula Ciudadanía',
         'Cédula de Extranjería',
@@ -119,8 +126,9 @@ export default {
         username: this.email,
         email: this.email,
         password: this.numeroIdentificacion,
-        role: 'Subcontratista',
+        role: 'Técnico/Trabajador',
       };
+
       const reqOne = await UsuarioDataService.crearUsuario(dataUsuario);
       this.usuarioGuardado = reqOne.data.usuarioGuardado;
 
@@ -131,12 +139,13 @@ export default {
         direccion: this.direccion,
         telefono: this.telefono,
         email: this.email,
+        cargo: this.cargo,
         usuario: this.usuarioGuardado.id,
       };
-
-      await ClienteDataService.crearCliente(data);
-      this.$router.push({ name: 'Clientes' });
+      await TrabajadorDataService.crearTrabajador(data);
+      this.$router.push({ name: 'Trabajadores' });
     },
+
   },
 };
 </script>
