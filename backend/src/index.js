@@ -6,7 +6,7 @@ const usuarioRoutes = require('./routes/usuarios');
 const obraRoutes = require('./routes/obras');
 const clienteRoutes = require('./routes/clientes');
 const authRoutes = require('./routes/auth');
-const { createRoles } = require('./libs/initialSetup');
+const { createData } = require('./libs/initialSetup');
 
 const connectionString = 'postgressql://registro_aca:lina159@localhost:5432/sistema_gestion_obras';
 
@@ -16,7 +16,7 @@ const client = new Client({
 
 const app = express();
 
-createRoles();
+createData();
 client.connect()
     .then(db => console.log('BD connected'))
     .catch(err => console.error(err));
