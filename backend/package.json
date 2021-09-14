@@ -23,7 +23,9 @@
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "register-service-worker": "^1.7.1",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
