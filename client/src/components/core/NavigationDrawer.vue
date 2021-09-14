@@ -27,7 +27,7 @@
         Usuarios</v-list-tile-title>
       </v-list-tile>
 
-      <v-list-tile @click="changeRoute('Mailbox', 3)">
+      <v-list-tile @click="changeRoute('Trabajadores', 3)">
         <v-list-tile-action>
           <v-icon>group</v-icon>
         </v-list-tile-action>

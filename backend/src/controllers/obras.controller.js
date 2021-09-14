@@ -1,10 +1,13 @@
 const db = require('../database/models/index');
+const obra_trabajadores = require('../database/models/obra_trabajadores');
 const Obra = require('../database/models/obra')(db.sequelize, db.Sequelize.DataTypes);
+const Trabajador = require('../database/models/trabajador')(db.sequelize, db.Sequelize.DataTypes);
+const Obra_Trabajadores = require('../database/models/obra_trabajadores')(db.sequelize, db.Sequelize.DataTypes);
 
 
 
 exports.createObra = async (req, res) => {
-    const { fechaInicio, fechaFin, nombre, descripcion, direccion, porcentajeAvance, jefeObra, tecnicos, cliente } = req.body;    
+    const { fechaInicio, fechaFin, nombre, descripcion, direccion, porcentajeAvance, jefeObra, trabajadores, cliente } = req.body;    
     
     const obra = new Obra({
         fechaInicio: fechaInicio,
@@ -13,11 +16,18 @@ exports.createObra = async (req, res) => {
         descripcion: descripcion,
         direccion: direccion,
         porcentajeAvance: porcentajeAvance,
-        jefeObra: jefeObra,
-        tecnicos: tecnicos,
+        jefeObra: jefeObra,        
         cliente: cliente,        
     });
+    
     const obraGuardada = await obra.save();
+    for (const trabajador of trabajadores) {    
+        const obra_trabajadores = new Obra_Trabajadores({
+            obraId: obraGuardada.id,
+            trabajadorId: trabajador.id
+        });
+        await obra_trabajadores.save();
+    };
     console.log(obraGuardada);
     res.status(200).json({ message: 'Obra creada'});
 }

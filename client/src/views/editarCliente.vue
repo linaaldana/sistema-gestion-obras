@@ -58,6 +58,7 @@
                       v-model="cliente.email"
                       label="E-mail"
                       required
+                      :rules="emailRules"
                     ></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -92,8 +93,8 @@ export default {
       ],
 
       emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => /.+@.+/.test(v) || 'E-mail must be valid',
+        (v) => !!v || 'El email es obligatorio',
+        (v) => /.+@.+/.test(v) || 'Por favor ingrese un email válido',
       ],
       nombre: '',
       tipoIdentificacion: '',

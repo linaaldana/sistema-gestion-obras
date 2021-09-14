@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const obra_trabajadores = require('./obra_trabajadores');
 module.exports = (sequelize, DataTypes) => {
   class Obra extends Model {
     /**
@@ -11,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Obra.hasMany(models.AvanceObra, { foreignKey: 'idObra' })
+      Obra.belongsTo(models.Cliente);
+      Obra.belongsToMany(models.Trabajadores, { through: models.Obra_Trabajadores, as: "trabajadores",
+      foreignKey: "obraId", });
     }
   };
   Obra.init({
@@ -21,8 +25,12 @@ module.exports = (sequelize, DataTypes) => {
     direccion: DataTypes.STRING,
     porcentajeAvance: DataTypes.INTEGER,
     jefeObra: DataTypes.INTEGER,
-    tecnicos: DataTypes.ARRAY(DataTypes.INTEGER),
-    cliente: DataTypes.INTEGER
+    cliente: {
+      type: DataTypes.INTEGER,
+      references: "Cliente",
+      referencesKey: "id",
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Obra',

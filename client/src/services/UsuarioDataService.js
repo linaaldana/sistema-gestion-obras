@@ -6,4 +6,5 @@ export default {
   getUsuario(data) { return http.get(`/usuarios/${data}`); },
   deleteUsuario(data) { return http.delete(`/usuarios/${data}`); },
   updateUsuario(data) { return http.put(`/usuarios/${data.id}`, data); },
+  getJefesObra() { return http.get('/usuarios/jefesobra/'); },
 };
