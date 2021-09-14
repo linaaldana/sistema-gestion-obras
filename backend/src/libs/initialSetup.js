@@ -10,11 +10,8 @@ const User = require('../database/models/usuario')(db.sequelize, db.Sequelize.Da
 exports.createData = async () => {
     createRoles();
     createUsers();
-    createWorks();
-    createGeoreferences();
-    createAdvances();
-    createPhotos();
     createClients();
+    createWorks();
 }
 
 var createRoles = async () => {
@@ -26,6 +23,7 @@ var createRoles = async () => {
     new Role({ nombre: 'Jefe de Obra' }).save();
     new Role({ nombre: 'Subcontratista' }).save();
     new Role({ nombre: 'Técnico/Trabajador' }).save();
+    new Role({ nombre: 'Cliente' }).save();
 }
 
 var createUsers = async () => {
@@ -41,12 +39,40 @@ var createUsers = async () => {
                 telefono: '123456789',
                 direccion: '123 calle falsa, Springfield',
                 foto: null }).save();
+
+    new User({  nombre: 'juanito perez',
+                username: 'juanito',
+                email: 'juanito@juanito.com',
+                password: await User.encryptPassword('juanito'),
+                role: '5',
+                telefono: '987654321',
+                direccion: '321 calle falsa, Springfield',
+                foto: null }).save();
+}
+
+var createClients = async () => {
+    const count = await Client.count({ distinct: 'id' });
+
+    if (count > 0) return;
+
+    new Client({tipoIdentificacion: 'Cedula de ciudadania',
+                numeroIdentificacion: '258741963',
+                usuario: '2'}).save()
 }
 
 var createWorks = async () => {
     const count = await Work.count({ distinct: 'id' });
 
     if (count > 0) return;
+
+    new Work({  fechaInicio: new Date('1995-12-17T03:24:00'),
+                fechaFin: new Date('2089-12-17T03:24:00'),
+                nombre: 'Edificio FAI univalle',
+                descripcion: 'Ya paila mi FAI',
+                direccion: 'Calle 13 # 100-00',
+                porcentajeAvance: '10',
+                jefeObra: null,
+                cliente: '2'})
 }
 
 var createGeoreferences = async () => {
@@ -63,12 +89,6 @@ var createAdvances = async () => {
 
 var createPhotos = async () => {
     const count = await Photo.count({ distinct: 'id' });
-
-    if (count > 0) return;
-}
-
-var createClients = async () => {
-    const count = await Client.count({ distinct: 'id' });
 
     if (count > 0) return;
 }
