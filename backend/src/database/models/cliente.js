@@ -17,7 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   Cliente.init({
     tipoIdentificacion: DataTypes.STRING,
     numeroIdentificacion: DataTypes.STRING,
-    usuario: DataTypes.INTEGER
+    usuario: {
+      type: DataTypes.INTEGER,
+      references: "Usuarios",
+      referencesKey: "id",
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Cliente',

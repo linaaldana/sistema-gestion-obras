@@ -4,11 +4,14 @@ const { Pool, Client } = require('pg');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require("swagger-jsdoc");
-const ms = require('mediaserver');
 const usuarioRoutes = require('./routes/usuarios');
 const obraRoutes = require('./routes/obras');
 const clienteRoutes = require('./routes/clientes');
 const trabajdorRoutes = require('./routes/trabajadores');
+const avancesRoutes = require('./routes/avances');
+const fotosRoutes = require('./routes/fotos');
+const georeferenciasRoutes = require('./routes/georeferencias');
+const vozRoutes = require('./routes/voz');
 const authRoutes = require('./routes/auth');
 const { createData } = require('./libs/initialSetup');
 
@@ -53,6 +56,10 @@ app.use('/usuarios', usuarioRoutes);
 app.use('/obras', obraRoutes);
 app.use('/clientes', clienteRoutes);
 app.use('/trabajadores', trabajdorRoutes);
+app.use('/avances', avancesRoutes);
+app.use('/fotos', fotosRoutes);
+app.use('/georeferencias', georeferenciasRoutes);
+app.use('/voz', vozRoutes);
 app.use('/auth', authRoutes);
 
 //Static files

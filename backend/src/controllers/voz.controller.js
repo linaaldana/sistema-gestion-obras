@@ -1,5 +1,7 @@
 const db = require('../database/models/index');
 const Voz = require('../database/models/voz')(db.sequelize, db.Sequelize.DataTypes);
+const mediaserver = require('mediaserver');
+const fs = require('fs');
 
 exports.createAudio = async (req, res) => {
     const { idAvanceObra } = req.body;  
@@ -10,6 +12,8 @@ exports.createAudio = async (req, res) => {
         idAvanceObra: idAvanceObra,
         path: "../../media/audio/" + id
     });
+    fs.writeFileSync(voz.path, Buffer.from(new Uint8Array(req.file.buffer)));
+
     const audioGuardado = await voz.save();
     console.log(audioGuardado);
     res.status(200).json({ message: 'Mensaje de voz creado'});
@@ -21,7 +25,7 @@ exports.getAudios = async (req, res) => {
 exports.getAudioById = async (req, res) => {
     const voz = await Voz.findByPk(req.params.id);
     if(!voz) return res.status(400).json({title: 'not found', error: 'El audio especificado no existe.'})
-    res.status(200).json({voz});
+    mediaserver.pipe(req, res, voz.path);
 }
 exports.deleteAudioById = async (req, res) => {
     await Voz.destroy({
