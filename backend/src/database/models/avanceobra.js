@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   AvanceObra.init({
+    nombre: DataTypes.STRING,
     fecha: DataTypes.DATE,
     descripcion: DataTypes.STRING,
     idObra: {

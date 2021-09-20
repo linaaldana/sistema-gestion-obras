@@ -4,9 +4,10 @@ const Avance = require('../database/models/avanceobra')(db.sequelize, db.Sequeli
 
 
 exports.createAvance = async (req, res) => {
-    const { descripcion, idObra } = req.body;    
+    const { nombre, descripcion, idObra } = req.body;    
     
     const avance = new Avance({
+        nombre: nombre,
         fecha: Date.now(),
         descripcion: descripcion,
         idObra: idObra

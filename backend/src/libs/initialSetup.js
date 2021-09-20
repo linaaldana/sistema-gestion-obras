@@ -43,8 +43,8 @@ var createUsers = async () => {
     new User({  nombre: 'juanito perez',
                 username: 'juanito',
                 email: 'juanito@juanito.com',
-                password: await User.encryptPassword('juanito'),
                 role: '5',
+                password: await User.encryptPassword('juanito'),
                 telefono: '987654321',
                 direccion: '321 calle falsa, Springfield',
                 foto: null }).save();
@@ -72,7 +72,7 @@ var createWorks = async () => {
                 direccion: 'Calle 13 # 100-00',
                 porcentajeAvance: '10',
                 jefeObra: null,
-                cliente: '2'})
+                cliente: '1'}).save();
 }
 
 var createGeoreferences = async () => {

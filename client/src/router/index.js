@@ -10,8 +10,11 @@ import Obras from '../views/Obras.vue';
 import Login from '../views/Login.vue';
 import crearUsuario from '../views/crearUsuario.vue';
 import crearObra from '../views/crearObra.vue';
+import crearAvance from '../views/crearAvances.vue';
 import verObra from '../views/verObra.vue';
 import editarUsuario from '../views/editarUsuario.vue';
+import editarAvance from '../views/editarAvance.vue';
+import AvancesObra from '../views/AvancesObra.vue';
 
 Vue.use(VueRouter);
 
@@ -123,6 +126,36 @@ const routes = [
     meta: {
       breadcrumb: [
         { name: 'ver Obra' },
+      ],
+    },
+  },
+  {
+    path: '/obras/:id/avances',
+    name: 'getAvances',
+    component: AvancesObra,
+    meta: {
+      breadcrumb: [
+        { name: 'ver Avances' },
+      ],
+    },
+  },
+  {
+    path: '/obras/:id/avances/crear',
+    name: 'crearAvance',
+    component: crearAvance,
+    meta: {
+      breadcrumb: [
+        { name: 'ver Avances' },
+      ],
+    },
+  },
+  {
+    path: '/obras/:id/avances/:idAvance/editar',
+    name: 'editarAvance',
+    component: editarAvance,
+    meta: {
+      breadcrumb: [
+        { name: 'editar Avances' },
       ],
     },
   },
