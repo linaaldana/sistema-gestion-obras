@@ -23,7 +23,20 @@
                       required
                     ></v-text-field>
                   </v-flex>
+                  <input type="file" @change="onPhotoChange" accept="image/*">
               <v-btn color="blue" @click="addPhoto"> Añadir imagen </v-btn>
+              <audio-recorder
+                upload-url="localhost:3000"
+                :attempts="3"
+                :time="2"
+                :headers="headers"
+                :before-recording="callback"
+                :pause-recording="callback"
+                :after-recording="callback"
+                :select-record="callback"
+                :before-upload="callback"
+                :successful-upload="callback"
+                :failed-upload="callback"/>
               <v-btn color="blue" @click="addAudio"> Añadir audio </v-btn>
                 </v-layout>
               </v-container>
@@ -42,7 +55,7 @@
 
 <script>
 import AvanceDataService from '../services/AvanceDataService';
-// import FotosDataService from '../services/FotosDataService';
+import FotosDataService from '../services/FotosDataService';
 // import AudioDataService from '../services/AudioDataService';
 
 export default {
@@ -56,9 +69,13 @@ export default {
       nombre: '',
       descripcion: '',
       idObra: this.$route.params.id,
+      selectedPhoto: null,
     };
   },
   methods: {
+    callback(data) {
+      console.debug(data);
+    },
     getAvance(idAvance) {
       AvanceDataService.getAvance(idAvance).then((res) => {
         this.currentAvance = res.data.avance;
@@ -77,7 +94,20 @@ export default {
         },
       );
     },
+    onPhotoChange(event) {
+      this.selectedPhoto = event.target.files[0];
+      console.log(this.selectedPhoto);
+    },
     addPhoto() {
+      FotosDataService.crearFoto('').then(
+        (res) => {
+          this.result = res.data.message;
+          this.showResult = true;
+        },
+        (err) => {
+          console.log(err.response);
+        },
+      );
     },
     addAudio() {
     },

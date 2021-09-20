@@ -1,21 +1,30 @@
 const db = require('../database/models/index');
 const Foto = require('../database/models/foto')(db.sequelize, db.Sequelize.DataTypes);
-const fs = require('fs');
 
 exports.createPhoto = async (req, res) => {
-    const { idAvanceObra, idGeoreferencia } = req.body;  
-    const date = Date.now();
-    const id = "ph" + date;
-    
-    const foto = new Foto({
-        idAvanceObra: idAvanceObra,
-        idGeoreferencia: idGeoreferencia,
-        path: "../../media/photos/" + id
-    });
-    fs.writeFileSync(voz.path, Buffer.from(new Uint8Array(req.file.buffer)));
-    const fotoGuardada = await foto.save();
-    console.log(fotoGuardada);
-    res.status(200).json({ message: 'Foto creada'});
+    console.log(req.file);
+    const tempPath = req.file.path;
+    const targetPath = path.join(__dirname, "./uploads/image.png");
+
+    if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+      fs.rename(tempPath, targetPath, err => {
+        if (err) return handleError(err, res);
+
+        res
+          .status(200)
+          .contentType("text/plain")
+          .end("File uploaded!");
+      });
+    } else {
+      fs.unlink(tempPath, err => {
+        if (err) return handleError(err, res);
+
+        res
+          .status(403)
+          .contentType("text/plain")
+          .end("Only .png files are allowed!");
+      });
+    }
 }
 exports.getPhotos = async (req, res) => {
     const foto = await Foto.findAll();

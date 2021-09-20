@@ -43,6 +43,8 @@ client.connect()
 
 //Settings
 app.set('port', process.env.PORT || 3000);
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 //Middlewares
 app.use(morgan('dev'));

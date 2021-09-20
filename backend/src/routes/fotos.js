@@ -8,7 +8,7 @@ router.get('/', fotoController.getPhotos);
 
 router.get('/:id', fotoController.getPhotoById);
 
-router.post('/', upload.single('imageBlob'), fotoController.createPhoto);
+router.post('/', upload.single("imageBlob"), fotoController.createPhoto);
 
 router.delete('/:id', fotoController.deletePhotoById);
 
