@@ -1,27 +1,24 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('AvanceObras', {
+    await queryInterface.createTable('Audios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      fecha: {
+      fechaRegistro: {
         type: Sequelize.DATE
       },
-      descripcion: {
+      path: {
         type: Sequelize.STRING
       },
-      idObra: {
+      idAvanceObra: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Obras",
+          model: "AvanceObras",
           key: "id",
           
         },
@@ -38,6 +35,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('AvanceObras');
+    await queryInterface.dropTable('Audios');
   }
 };

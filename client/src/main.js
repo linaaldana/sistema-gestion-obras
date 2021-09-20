@@ -5,6 +5,7 @@ import fullCalendar from 'vue-fullcalendar';
 import swatches from 'vue-swatches';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import AudioRecorder from 'vue-audio-recorder';
 import App from './App.vue';
 import router from './router';
 
@@ -20,6 +21,7 @@ import setupComponents from './components/config/setup-components';
 Vue.component('full-calendar', fullCalendar);
 Vue.component('swatches', swatches);
 Vue.use(VueAxios, axios);
+Vue.use(AudioRecorder);
 
 setupComponents(Vue);
 Vue.use(Vuetify);

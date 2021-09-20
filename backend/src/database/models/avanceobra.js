@@ -12,9 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       AvanceObra.belongsTo(models.Obra);
       AvanceObra.hasMany(models.Foto, { foreignKey: 'idAvanceObra' });
+      AvanceObra.hasMany(models.Voz, { foreignKey: 'idAvanceObra' });
     }
   };
   AvanceObra.init({
+    nombre: DataTypes.STRING,
     fecha: DataTypes.DATE,
     descripcion: DataTypes.STRING,
     idObra: {

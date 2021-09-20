@@ -16,7 +16,7 @@
                   </v-flex>
                 </v-layout>
               </v-container>
-              <v-btn color="success" @click="submit"> Registrar avance obra </v-btn>
+              <v-btn color="success" @click="getAvances()">Avances de obra</v-btn>
             </v-card-text>
         </v-card>
       </v-flex>
@@ -54,6 +54,9 @@ export default {
           console.log(err.response);
         },
       );
+    },
+    getAvances() {
+      this.$router.push({ name: 'getAvances', params: { id: this.obra.id } });
     },
   },
   mounted() {
